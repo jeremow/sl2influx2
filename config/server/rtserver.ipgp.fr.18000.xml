@@ -1,1 +1,101 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<FDSNStationXML xmlns="http://www.fdsn.org/xml/station/1" xmlns:dtk="http://www.fdsn.org/xml/dtk/1" schemaVersion="1.0">
+	<Source>RD</Source>
+	<Module>ObsPy 1.0.2</Module>
+	<ModuleURI>https://www.obspy.org</ModuleURI>
+	<Created>2020-10-08T02:33:00.000000+00:00</Created>
+    <Network code="G">
+        <TotalNumberStations>1</TotalNumberStations> 
+		<Station code="FDFM" startDate="2001-09-04T00:00:00" endDate="2050-12-31T23:59:59" dtk:networkAffiliation="LDG">
+			<Site>
+                <Name>FDFM</Name>
+            </Site>
+            <Latitude>47.846770</Latitude>
+            <Longitude>106.403250</Longitude>
+            <Elevation>1.5117</Elevation>
+            <TotalNumberChannels>1</TotalNumberChannels>
+			<Channel code="BHZ" name="SONA1" dtk:sensorCode="SONA1" dtk:abbrName="" dtk:alternateCode=" " locationCode="00" startDate="2002-06-04T00:00:00" endDate="2050-12-31T23:59:59">
+                <Sensor>
+                    <Description>FDFM SHZ</Description>
+                </Sensor>
+                <Latitude>47.846770</Latitude>
+                <Longitude>106.403250</Longitude>
+                <Elevation>1.5117</Elevation>
+                <Depth>0</Depth>
+                <Dip>0</Dip>
+                <Azimuth>0</Azimuth>
+                <SampleRate>50</SampleRate>
+                
+            </Channel>
+		</Station>
+    </Network>
+    <Network code="WI">
+        <TotalNumberStations>1</TotalNumberStations> 
+		<Station code="ABD" startDate="2001-09-04T00:00:00" endDate="2050-12-31T23:59:59" dtk:networkAffiliation="LDG">
+			<Site>
+                <Name>ABD</Name>
+            </Site>
+            <Latitude>47.846770</Latitude>
+            <Longitude>106.403250</Longitude>
+            <Elevation>1.5117</Elevation>
+            <TotalNumberChannels>1</TotalNumberChannels>
+			<Channel code="HHZ" name="ABD" dtk:sensorCode="ABD" dtk:abbrName="" dtk:alternateCode=" " locationCode="00" startDate="2002-06-04T00:00:00" endDate="2050-12-31T23:59:59">
+                <Sensor>
+                    <Description>ABD HHZ</Description>
+                </Sensor>
+                <Latitude>47.846770</Latitude>
+                <Longitude>106.403250</Longitude>
+                <Elevation>1.5117</Elevation>
+                <Depth>0</Depth>
+                <Dip>0</Dip>
+                <Azimuth>0</Azimuth>
+                <SampleRate>50</SampleRate>
+                
+            </Channel>
+		</Station>
+		<Station code="BIM" startDate="2001-09-04T00:00:00" endDate="2050-12-31T23:59:59" dtk:networkAffiliation="LDG">
+			<Site>
+                <Name>BIM</Name>
+            </Site>
+            <Latitude>47.846770</Latitude>
+            <Longitude>106.403250</Longitude>
+            <Elevation>1.5117</Elevation>
+            <TotalNumberChannels>1</TotalNumberChannels>
+			<Channel code="HHZ" name="BIM" dtk:sensorCode="BIM" dtk:abbrName="" dtk:alternateCode=" " locationCode="00" startDate="2002-06-04T00:00:00" endDate="2050-12-31T23:59:59">
+                <Sensor>
+                    <Description>BIM HHZ</Description>
+                </Sensor>
+                <Latitude>47.846770</Latitude>
+                <Longitude>106.403250</Longitude>
+                <Elevation>1.5117</Elevation>
+                <Depth>0</Depth>
+                <Dip>0</Dip>
+                <Azimuth>0</Azimuth>
+                <SampleRate>50</SampleRate>
+                
+            </Channel>
+		</Station>
+		<Station code="CBE" startDate="2001-09-04T00:00:00" endDate="2050-12-31T23:59:59" dtk:networkAffiliation="LDG">
+			<Site>
+                <Name>CBE</Name>
+            </Site>
+            <Latitude>47.846770</Latitude>
+            <Longitude>106.403250</Longitude>
+            <Elevation>1.5117</Elevation>
+            <TotalNumberChannels>1</TotalNumberChannels>
+			<Channel code="HHZ" name="CBE" dtk:sensorCode="CBE" dtk:abbrName="" dtk:alternateCode=" " locationCode="00" startDate="2002-06-04T00:00:00" endDate="2050-12-31T23:59:59">
+                <Sensor>
+                    <Description>CBE HHZ</Description>
+                </Sensor>
+                <Latitude>47.846770</Latitude>
+                <Longitude>106.403250</Longitude>
+                <Elevation>1.5117</Elevation>
+                <Depth>0</Depth>
+                <Dip>0</Dip>
+                <Azimuth>0</Azimuth>
+                <SampleRate>50</SampleRate>
+                
+            </Channel>
+		</Station>
+    </Network>
+</FDSNStationXML>	
