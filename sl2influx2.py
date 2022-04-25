@@ -13,6 +13,7 @@ from utils import get_network_list
 from influxdb_client import InfluxDBClient
 from influxdb_client.client.write_api import SYNCHRONOUS
 from influxdb_client.domain.write_precision import WritePrecision
+from influxdb_client.client.exceptions import InfluxDBError
 
 from obspy.clients.seedlink.client.seedlinkconnection import SeedLinkConnection
 from obspy.clients.seedlink.easyseedlink import EasySeedLinkClient
@@ -28,35 +29,34 @@ class SeedLinkInfluxClient(EasySeedLinkClient):
         try:
             super(SeedLinkInfluxClient, self).__init__(server_sl_url, autoconnect=True)
             self.conn.timeout = 30
-
             self.connected = 0
-
             self.connected = get_network_list('server', self.network_list_values,
                                               server_hostname=self.server_hostname, server_port=self.server_port)
+            if self.connected != 1:
+                exit(1)
 
             self.streams = self.network_list_values
-
         except SeedLinkException:
-            pass
+            exit(1)
 
-        try:
-            self.server_influx = server_influx_url
-            self.bucket = bucket
-            self.token = token
-            self.org = org
-            self.client_influx = InfluxDBClient(url=self.server_influx, token=self.token, org=self.org)
-            self.write_api = self.client_influx.write_api(SYNCHRONOUS)
-        except ValueError:
-            pass
+        self.server_influx = server_influx_url
+        self.bucket = bucket
+        self.token = token
+        self.org = org
+        self.client_influx = InfluxDBClient(url=self.server_influx, token=self.token, org=self.org)
+        self.write_api = self.client_influx.write_api(SYNCHRONOUS)
+        if self.client_influx.ping() is not True:
+            print('Connection error to InfluxDB Database. Verify information.')
+            exit(1)
 
     def on_data(self, tr):
         print(tr)
 
         # tr.resample(sampling_rate=25.0)
         t_start = obspy.UTCDateTime()
-        tr.detrend(type='constant')
 
-        if tr is not None:
+        if tr is not None and t_start - tr.stats.starttime <= 300:
+            tr.detrend(type='constant')
             if tr.stats.location == '':
                 station = tr.stats.network + '.' + tr.stats.station + '.' + tr.stats.channel
             else:
@@ -74,12 +74,17 @@ class SeedLinkInfluxClient(EasySeedLinkClient):
                     },
                     "time": timestamp
                 })
+            try:
+                self.write_api.write(self.bucket, self.org, record=data, write_precision=WritePrecision.MS)
+                t_stop = obspy.UTCDateTime()
+                print(f'{station} sent to {self.bucket} in {t_stop-t_start}s')
+            except InfluxDBError as e:
+                print(e)
+                print(f'blockette of {station} not sent to {self.bucket}.')
+                pass
 
-            self.write_api.write(self.bucket, self.org, record=data, write_precision=WritePrecision.MS)
-            t_stop = obspy.UTCDateTime()
-
-            print(f'{station} sent to {self.bucket} in {t_stop-t_start}s')
-
+        elif t_start - tr.stats.starttime > 300:
+            print(f'blockette is too old ({(t_start - tr.stats.starttime)/60} min).')
         else:
             print("blockette contains no trace")
 
