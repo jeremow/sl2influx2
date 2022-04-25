@@ -15,6 +15,8 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 from influxdb_client.domain.write_precision import WritePrecision
 from influxdb_client.client.exceptions import InfluxDBError
 
+from urllib3.exceptions import ReadTimeoutError
+
 from obspy.clients.seedlink.client.seedlinkconnection import SeedLinkConnection
 from obspy.clients.seedlink.easyseedlink import EasySeedLinkClient
 from obspy.clients.seedlink.seedlinkexception import SeedLinkException
@@ -78,7 +80,7 @@ class SeedLinkInfluxClient(EasySeedLinkClient):
                 self.write_api.write(self.bucket, self.org, record=data, write_precision=WritePrecision.MS)
                 t_stop = obspy.UTCDateTime()
                 print(f'{station} sent to {self.bucket} in {t_stop-t_start}s')
-            except InfluxDBError as e:
+            except Exception as e:
                 print(e)
                 print(f'blockette of {station} not sent to {self.bucket}.')
                 pass
