@@ -39,3 +39,6 @@ from(bucket: "rtserver-seismic")
   |> aggregateWindow(every: 25ms, fn: mean, createEmpty: true)
   |> yield(name: "mean")
 ```
+
+View in Grafana:
+![seimic_view_grafana](grafana_seismic.png)
