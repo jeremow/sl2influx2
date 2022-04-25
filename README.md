@@ -1,4 +1,4 @@
-# Seedlink to InfluxDBv2
+# Seedlink to InfluxDB 2.x
 sl2influx2.py is a python script which query data from a Seedlink server and send it to a InfluxDB 2.x database.
 
 ## Installation
@@ -21,7 +21,7 @@ To launch the script, you open a terminal in the folder of sl2influx2.py. Be sur
 
 Usage: `python sl2influx2.py [-h] -s SERVER_SL [-p PORT_SL] -S SERVER_INFLUX [-P PORT_INFLUX] -b BUCKET -o ORG -t TOKEN`
 
-The following arguments are required: -s/--server-sl, -S/--server-influx, -b/--bucket, -o/--org, -t/--token. Default ports are respectively 18000 and 8086.
+The following arguments are required: `-s/--server-sl, -S/--server-influx, -b/--bucket, -o/--org, -t/--token`. Default ports are respectively 18000 and 8086.
 You need to create a config file in the directory `config/server/name.server.port.server.xml` with the stations you want to read from the seedlink server. This config file has to be formatted in the stationXML standard (information on FDSN). An example is given on this repo for `rtserver.ipgp.fr` on port `18000`. 
 
 ## Information
