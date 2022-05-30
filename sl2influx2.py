@@ -54,7 +54,7 @@ class SeedLinkInfluxClient(EasySeedLinkClient):
     def on_data(self, tr):
         print(tr)
 
-        tr.resample(sampling_rate=25.0)
+        # tr.resample(sampling_rate=25.0)
         t_start = obspy.UTCDateTime()
 
         if tr is not None and t_start - tr.stats.starttime <= 300:
