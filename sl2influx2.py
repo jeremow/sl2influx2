@@ -59,10 +59,8 @@ class SeedLinkInfluxClient(EasySeedLinkClient):
 
         if tr is not None and t_start - tr.stats.starttime <= 300:
             tr.detrend(type='constant')
-            if tr.stats.location == '':
-                station = tr.stats.network + '.' + tr.stats.station + '.' + tr.stats.channel
-            else:
-                station = tr.stats.network + '.' + tr.stats.station + '.' + tr.stats.location + '.' + tr.stats.channel
+
+            station = tr.stats.network + '.' + tr.stats.station + '.' + tr.stats.location + '.' + tr.stats.channel
 
             data = []
             timestamp_start = int(tr.stats.starttime.timestamp * 1e3)
